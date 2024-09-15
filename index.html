@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>ChatGPT Web App</title>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>ChatGPT API</h2>
+            <label for="apiKey">API Key:</label>
+            <input type="password" id="apiKey" placeholder="Enter your API Key">
+            
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter your name"><!-- Added for custom username -->
+            
+            <label for="model">Choose Model:</label>
+            <select id="model"></select>
+            
+            <label for="userInput">Your Query:</label>
+            <textarea id="userInput" placeholder="Enter your query here..."></textarea>
+            
+            <button id="sendButton">Send</button>
+            
+            <div id="apiCost">Total Cost: $0.00</div><!-- Added to display API cost -->
+        </div>
+        <div class="chat-window">
+            <div id="chatOutput"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
