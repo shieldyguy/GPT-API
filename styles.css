@@ -44,7 +44,7 @@ body {
 
 /* Adjust the sidebar width to prevent cramming */
 .sidebar {
-    width: 300px; /* Set a fixed width for sidebar */
+    min-width: 25%; /* Set width to a percentage of the screen */
     padding: 20px;
     overflow-y: auto; /* Allow scrolling if content exceeds */
 }
@@ -73,20 +73,27 @@ select {
     padding: 20px; 
     border-left: 1px solid #ccc; /* Light left border */
     overflow-y: auto; /* Allow scrolling if chat content exceeds height */
+    max-width: 75%; /* Set a maximum width to prevent overflow */
 }
 
 /* Chat messages */
-.user-message {
-    color: #f0b1b1;  /* User's message color */
+.default-text {
+    color: #c5c5c5; /* Default text color */
+    font-size: medium;
+    margin-top: 10px;
 }
 
-.gpt-message {
-    color: #9ad9e5; /* ChatGPT's message color */
+.username {
+    color: #95deda; /* Username color */
+}
+
+.chatgpt-name {
+    color: #93d69a; /* ChatGPT's name color */
 }
 
 /* Display names in chat */
-.gpt-message span,
-.user-message span {
+.username,
+.chatgpt-name {
     font-weight: bold; /* Highlight names */
 }
 

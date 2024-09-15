@@ -45,16 +45,42 @@ async function fetchModels() {
 }
 
 // Function to populate the model dropdown
+// Function to populate the model dropdown
 function populateModelDropdown(models) {
     const modelDropdown = document.getElementById('model');
     modelDropdown.innerHTML = ''; // Clear existing options
+
+    let defaultModel = 'gpt-4o-mini'; // Set your preferred default model ID here
+    let modelFound = false; // Flag to track if default model is found
+
     models.forEach(model => {
         const option = document.createElement('option');
-        option.value = model.id; // Assuming each model has an 'id' property
-        option.textContent = model.id; // Display the model id or name
+        option.value = model.id;
+        option.textContent = model.id;
+
+        // Check if the model is the default one
+        if (model.id === defaultModel) {
+            option.selected = true; // Set the default model as selected
+            modelFound = true; // Set the flag if the default model is found
+        }
+
         modelDropdown.appendChild(option);
     });
+
+    // If the default model isn't found, select the first model in the list
+    if (!modelFound && models.length > 0) {
+        modelDropdown.options[0].selected = true; // Select the first available model
+    }
 }
+
+
+// Event listener for sending message on Enter key
+document.getElementById("userInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Prevent default new line
+        sendMessage(); // Call sendMessage function
+    }
+});
 
 async function sendMessage() {
     const apiKey = document.getElementById("apiKey").value;
@@ -69,7 +95,7 @@ async function sendMessage() {
     }
 
     console.log("User Input:", userInput);
-    chatOutput.innerHTML += `<div class=\"user-message\">${username}: ${userInput}</div>`;
+    chatOutput.innerHTML += `<div class=\"default-text\"><span class="username">${username}:</span> ${userInput}</div>`;
     document.getElementById("userInput").value = "";
 
     try {
@@ -105,7 +131,7 @@ async function sendMessage() {
         updateCostDisplay(totalCost); // Update the display of total cost
 
         const assistantResponse = result.choices[0]?.message?.content || "No response received.";
-        chatOutput.innerHTML += `<div class=\"gpt-message\">ChatGPT: ${assistantResponse}</div>`;
+        chatOutput.innerHTML += `<div class=\"default-text\"><span class="chatgpt-name">ChatGPT:</span> ${assistantResponse}</div>`;
     } catch (error) {
         console.error("Error during API call:", error);
         chatOutput.innerHTML += `<div>Error: ${error.message}</div>`;
